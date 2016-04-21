@@ -1,0 +1,137 @@
+.o-liveticker {
+	
+}
+
+.o-liveticker__title {
+	font-weight: 300;
+	text-align: center;
+}
+
+.o-liveticker__preview {
+	border: 1px dotted #999;
+	padding: 5px;
+	min-height: 80px;
+	margin-bottom: 40px;
+}
+
+.o-liveticker__preview-title {
+	font-weight: 300;
+	font-size: 12px;
+	margin: 0;
+}
+
+.o-liveticker__preview-text {
+	margin: 0;
+	font-size: 12px;
+}
+
+.o-liveticker__image {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.o-liveticker__overlay--success,
+.o-liveticker__overlay--error {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+.o-liveticker__overlay--success {
+	background-color: #6FBF85
+}
+
+.o-liveticker__overlay--error {
+	background-color: red;
+}
+
+label {
+	font-size: 12px;
+	font-weight: 300;
+}
+
+input,
+textarea {
+	width: 100%;
+	border: 1px solid #ededed;
+	padding: 5px;
+	font-size: 14px;
+	margin-bottom: 10px;
+	outline: none;
+}
+
+input:focus,
+textarea:focus {
+	border: 1px solid #6FBF85;
+}
+
+progress {
+	width: 100%;
+	margin: -10px 0 10px;
+}
+
+.o-liveticker__label-file {
+	display: block;
+	position: relative;
+    width: 100%;
+    height: 26px;
+    border: 2px solid #6FBF85;
+    text-align: center;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+.o-liveticker__input-file {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.o-liveticker__options {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	font-weight: 300;
+	display: block;
+    width: 100%;
+    height: 40px;
+    -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   border: 2px solid #6FBF85;
+   border-radius: 0;
+   background: transparent;
+   padding-left: 10px;
+   margin-bottom: 10px;
+}
+
+.o-liveticker__form-btn {
+	background-color: #6FBF85;
+	border: none;
+	color: white;
+	height: 40px;
+	margin-top: 10px;
+}
+
+.o-liveticker__error,
+.o-liveticker__success {
+	margin: 0;
+	padding: 10px 0 0 10px;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+.o-liveticker__error {
+	color: white;
+}
+
+.o-liveticker__success {
+	color: white;
+}
+
+
+
