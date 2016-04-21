@@ -36,7 +36,7 @@ export class LivetickerService {
   }
 
   onPostSuccess(data) {
-    console.log('Success on LivetickerService: postData(): ', data);
+    //console.log('Success on LivetickerService: postData(): ', data);
   }
 
   onPostError(error) {

@@ -36,7 +36,7 @@ export class PushnotificationService {
   }
 
   onPostSuccess(data) {
-    console.log('Success on PushnotificationService: postData(): ', data);
+    //console.log('Success on PushnotificationService: postData(): ', data);
   }
 
   onPostError(error) {
