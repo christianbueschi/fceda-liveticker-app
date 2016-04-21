@@ -3,7 +3,7 @@ import {Http, RequestOptions, Headers} from 'angular2/http';
 import 'rxjs/add/operator/map';
 
 // API URL 
-const url = 'http://localhost:3030/notifications';
+const url = 'https://fceda-liveticker-service.herokuapp.com/notifications';
 
 // HTTP Headers
 const headers = new Headers({

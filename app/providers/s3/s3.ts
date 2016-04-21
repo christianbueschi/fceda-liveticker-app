@@ -15,8 +15,8 @@ export class S3Service {
   retrieveSignRequestAndUpload(file, onload, callback) {
     let res;
 
-    this.http.get('http://localhost:3030/sign_s3?file_name='+file.name+'&file_type='+file.type)
-      .subscribe(
+    this.http.get('https://fceda-liveticker-service.herokuapp.com/sign_s3?file_name=' + file.name+'&file_type='+file.type)
+    .subscribe(
         data => res = data,
         err => console.log('error while s3'),
         () => this.onCompleteSigningRequest(res, file, onload, callback)
