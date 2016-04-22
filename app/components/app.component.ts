@@ -143,6 +143,7 @@ export class AppComponent {
 		this.text = "";
 		this.minute = null;
 		this.imageUrl = "";
+		this.isTitle = false;
 	}
 
 }

@@ -31,5 +31,8 @@
 			<option *ngFor="#option of options" value="{{option.key}}">{{option.title}}</option>
 		</select>
 	</label>
+	<label for="isTitle" class="o-liveticker__cbtitle-label">Set Title
+		<input #titlecb type="checkbox" id="isTitle" class="o-liveticker__cbtitle" (change)="isTitle = titlecb.checked">
+	</label>
 	<input class="o-liveticker__form-btn" type="submit" value="Push it"/>
 </form>

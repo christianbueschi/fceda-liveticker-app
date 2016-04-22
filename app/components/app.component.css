@@ -120,7 +120,7 @@ progress {
 .o-liveticker__options-lable {
 	position: relative;
 	display: inline-block;
-	width: 100%;
+	width: 80%;
 }
 
 .o-liveticker__options-lable:before {
@@ -145,6 +145,27 @@ progress {
 	border-style: solid;
 	border-width: 10px 10px 0 10px;
 	border-color: white transparent transparent transparent;
+}
+
+.o-liveticker__cbtitle-label {
+	float: left;
+	width: 20%;
+}
+
+.o-liveticker__cbtitle {
+	display: block;
+	width: 40px;
+	height: 40px;
+	border: 2px solid #6FBF85;
+	margin: 0;
+}
+
+.o-liveticker__cbtitle:focus {
+	border: 2px solid #6FBF85;
+}
+
+.o-liveticker__cbtitle:checked {
+	background: #6FBF85;
 }
 
 .o-liveticker__form-btn {
