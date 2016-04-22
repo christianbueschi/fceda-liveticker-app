@@ -1,0 +1,35 @@
+<h1 class="o-liveticker__title">FC EDA Liveticker</h1>
+
+<section class="o-liveticker__preview">
+	<h3 class="o-liveticker__preview-title">Preview:</h3>
+	<img *ngIf="imageUrl" src="{{imageUrl}}" alt="" class="o-liveticker__image"/>
+	<p class="o-liveticker__preview-text"><b *ngIf="minute">{{minute}}. Spielminute:</b> {{text}}</p>
+</section>
+
+<div class="o-liveticker__overlay--success">
+	<p class="o-liveticker__success" *ngIf="recipients">{{recipients}} Push Notifications successfully sent</p>
+	<p class="o-liveticker__success" *ngIf="livetickerSent">Successfully sent to Liveticker</p>
+</div>
+<div class="o-liveticker__overlay--error">
+	<p class="o-liveticker__error" *ngIf="error">Error while sending Push Notifications</p>
+	<p class="o-liveticker__error" *ngIf="emptyText">Please fill in message field</p>
+</div>
+
+<form class="o-liveticker__form" (ngSubmit)="onFormSubmit(text, minute, option)">
+	<label for="minute">Minute of Play
+		<input type="number" [(ngModel)]="minute"/>
+	</label>
+	<label for="textarea">Message
+		<textarea name="" id="textarea" [(ngModel)]="text" cols="30" rows="3"></textarea>
+	</label>
+	<label for="image" class="o-liveticker__label-file">Upload Picture
+		<input type="file" id="image" class="o-liveticker__input-file" (change)="onChangeFile($event)"/>
+	</label>
+	<progress *ngIf="loading"></progress>
+	<label for="option" class="o-liveticker__options-lable">Send Options
+		<select name="select" id="option" [(ngModel)]="option" class="o-liveticker__options">
+			<option *ngFor="#option of options" value="{{option.key}}">{{option.title}}</option>
+		</select>
+	</label>
+	<input class="o-liveticker__form-btn" type="submit" value="Push it"/>
+</form>

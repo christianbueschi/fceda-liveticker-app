@@ -1,14 +1,14 @@
 import {Component, Injectable} from 'angular2/core';
 import { Http, RequestOptions, Headers } from 'angular2/http';
 import 'rxjs/add/operator/map';
-import {LivetickerService} from './providers/liveticker/liveticker';
-import {PushnotificationService} from './providers/pushnotification/pushnotification';
-import {S3Service} from './providers/s3/s3';
+import {LivetickerService} from '../providers/liveticker/liveticker';
+import {PushnotificationService} from '../providers/pushnotification/pushnotification';
+import {S3Service} from '../providers/s3/s3';
 
 @Component({
     selector: 'liveticker',
-	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.css'],
+	templateUrl: './components/app.component.html',
+	styleUrls: ['./components/app.component.css'],
 	providers: [LivetickerService, PushnotificationService, S3Service]
 })
 
