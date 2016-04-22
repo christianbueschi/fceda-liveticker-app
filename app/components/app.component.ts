@@ -4,6 +4,8 @@ import 'rxjs/add/operator/map';
 import {LivetickerService} from '../providers/liveticker/liveticker';
 import {PushnotificationService} from '../providers/pushnotification/pushnotification';
 import {S3Service} from '../providers/s3/s3';
+import {Liveticker} from '../models/liveticker/liveticker';
+import {Pushnotification} from '../models/pushnotification/pushnotification';
 
 @Component({
     selector: 'liveticker',
@@ -15,23 +17,23 @@ import {S3Service} from '../providers/s3/s3';
 @Injectable()
 export class AppComponent {
 
+	// View Props
 	private text: string;
 	private minute: Number;
-	private image: Object;
-	private option: string;
 	private imageUrl: string;
-
-	private livetickerService: LivetickerService;
-	private pushnotificationService: PushnotificationService;
-	private s3Service: S3Service;
-	
+	private options: Array<Object>;
+	private option: string;
+	private isTitle: Boolean;
 	private recipients: Number;
 	private error: Boolean;
 	private livetickerSent: Boolean;
 	private loading: Boolean;
 	private emptyText: Boolean;
 
-	private options: Array<Object>;
+	// Services
+	private livetickerService: LivetickerService;
+	private pushnotificationService: PushnotificationService;
+	private s3Service: S3Service;
 
 	constructor(private http: Http, livetickerService: LivetickerService, pushnotificationService: PushnotificationService, s3Service: S3Service) {
 
@@ -39,6 +41,7 @@ export class AppComponent {
 		this.emptyText = false;
 		this.livetickerSent = false;
 		this.loading = false;
+		this.isTitle = false;
 
 		this.livetickerService = livetickerService;
 		this.pushnotificationService = pushnotificationService;
@@ -75,23 +78,19 @@ export class AppComponent {
 			});
 	}
 
-	onload() {
-
-	}
-
-	onFormSubmit(text: string, minute: Number, option: string) {
+	onFormSubmit(text: string, minute: Number, option: string, isTitle: Boolean) {
 
 		if(text) {
 			switch(option) {
 				case 'pushAndLiveticker': // Send to PNS Server and Liveticker Server
 					this.createPushnotificationAndSend(text, minute);
-					this.createLivetickerAndSend(text, minute);
+					this.createLivetickerAndSend(text, minute, isTitle);
 					break;
 				case 'push': // Send to PNS Server
 					this.createPushnotificationAndSend(text, minute);
 					break;
 				case 'liveticker' : // Send to Liveticker Server
-					this.createLivetickerAndSend(text, minute);
+					this.createLivetickerAndSend(text, minute, isTitle);
 					break;
 			}
 		} else {
@@ -108,14 +107,14 @@ export class AppComponent {
 			text = minute + '. Spielminute: ' + text;
 		}
 
-		let message = new Message(
+		let pushnotification = new Pushnotification(
 			'0e694cca-15b1-42b5-817e-151c9f3a3d70',
 			['All'],
 			{ 'foo': 'bar' },
 			{ 'en': text }
 		);
 
-		this.pushnotificationService.postData(message, (data) => {
+		this.pushnotificationService.postData(pushnotification, (data) => {
 			let body = JSON.parse(data._body);
 			this.recipients = body.recipients;
 			this.clearFields();
@@ -125,11 +124,11 @@ export class AppComponent {
 		});
 	}
 
-	createLivetickerAndSend(text, minute) {
+	createLivetickerAndSend(text, minute, isTitle) {
 
 		let image = (this.imageUrl) ? this.imageUrl : "";
 
-		let liveticker = new Liveticker(text, minute, image);
+		let liveticker = new Liveticker(text, minute, image, isTitle);
 		
 		this.livetickerService.postData(liveticker, () => {
 			this.livetickerSent = true;
@@ -144,45 +143,6 @@ export class AppComponent {
 		this.text = "";
 		this.minute = null;
 		this.imageUrl = "";
-	}
-
-
-}
-
-/*
-* REST API Model Onesignal
-* see: https://documentation.onesignal.com/docs/notifications-create-notification
-*/
-export class Message {
-
-	private app_id: String;
-	private included_segments: Array<String>;
-	private data: Object;
-	private contents: Object;
-
-	constructor(app_id: String, included_segments: Array<String>, data: Object, contents: Object) {
-		this.app_id = app_id;
-		this.included_segments = included_segments;
-		this.data = data;
-		this.contents = contents;
-	}
-
-}
-
-/*
-* REST API Model Liveticker
-* see: 
-*/
-export class Liveticker {
-
-	private text: string;
-	private minute: Number;
-	private image: string;
-
-	constructor(text: string, minute: Number, image: string) {
-		this.text = text;
-		this.minute = minute;
-		this.image = image;
 	}
 
 }

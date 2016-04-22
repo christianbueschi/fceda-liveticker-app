@@ -15,7 +15,7 @@
 	<p class="o-liveticker__error" *ngIf="emptyText">Please fill in message field</p>
 </div>
 
-<form class="o-liveticker__form" (ngSubmit)="onFormSubmit(text, minute, option)">
+<form class="o-liveticker__form" (ngSubmit)="onFormSubmit(text, minute, option, isTitle)">
 	<label for="minute">Minute of Play
 		<input type="number" [(ngModel)]="minute"/>
 	</label>
