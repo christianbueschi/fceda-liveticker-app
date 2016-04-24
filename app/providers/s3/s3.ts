@@ -15,6 +15,11 @@ export class S3Service {
   retrieveSignRequestAndUpload(file, onload, callback) {
     let res;
     let prefix = this.createUniqueId();
+    
+    if(file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'video/quicktime') {
+      alert('File Type not allowed');
+      return;
+    }
 
     this.http.get('https://fceda-liveticker-service.herokuapp.com/sign_s3?file_name=' + prefix + '-' + file.name+'&file_type='+file.type)
     .subscribe(
@@ -27,13 +32,14 @@ export class S3Service {
   onCompleteSigningRequest(data, file, onload, callback) {
     onload();
     data = JSON.parse(data._body);
+    let type = file.type;
     let url = data.url
     var xhr = new XMLHttpRequest();  
     xhr.open("PUT", data.signed_request);
     xhr.setRequestHeader('x-amz-acl', 'public-read');
     xhr.onload = () => {
       if (xhr.status === 200) {
-        callback(url);
+        callback(url, type);
       }
     };
     xhr.onerror = function() {

@@ -20,7 +20,8 @@ export class AppComponent {
 	// View Props
 	private text: string;
 	private minute: Number;
-	private imageUrl: string;
+	private mediaUrl: string;
+	private mediaType: string;
 	private options: Array<Object>;
 	private option: string;
 	private isTitle: Boolean;
@@ -72,8 +73,9 @@ export class AppComponent {
 			() => {
 				this.loading = true;
 			},
-			(url) => {
-				this.imageUrl = url;
+			(url, type) => {
+				this.mediaUrl = url;
+				this.mediaType = type;
 				this.loading = false;
 			});
 	}
@@ -125,10 +127,20 @@ export class AppComponent {
 	}
 
 	createLivetickerAndSend(text, minute, isTitle) {
+		
+		let video = "";
+		let image = "";
+		
+		switch(this.mediaType) {
+			case "image/jpeg" :
+				image = this.mediaUrl;
+				break;
+			case "video/quicktime" :
+				video = this.mediaUrl;
+				break;
+		}
 
-		let image = (this.imageUrl) ? this.imageUrl : "";
-
-		let liveticker = new Liveticker(text, minute, image, isTitle);
+		let liveticker = new Liveticker(text, minute, image, video, isTitle);
 		
 		this.livetickerService.postData(liveticker, () => {
 			this.livetickerSent = true;
@@ -142,7 +154,7 @@ export class AppComponent {
 	clearFields() {
 		this.text = "";
 		this.minute = null;
-		this.imageUrl = "";
+		this.mediaUrl = "";
 		this.isTitle = false;
 	}
 

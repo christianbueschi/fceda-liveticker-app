@@ -26,7 +26,8 @@
 	font-size: 12px;
 }
 
-.o-liveticker__image {
+.o-liveticker__image,
+.o-liveticker__video {
 	width: 100%;
 	margin-bottom: 10px;
 }

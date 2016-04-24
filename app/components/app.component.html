@@ -2,7 +2,11 @@
 
 <section class="o-liveticker__preview">
 	<h3 class="o-liveticker__preview-title">Preview:</h3>
-	<img *ngIf="imageUrl" src="{{imageUrl}}" alt="" class="o-liveticker__image"/>
+	<img *ngIf="mediaType === 'image/jpeg' || mediaType === 'image/png'" src="{{mediaUrl}}" alt="" class="o-liveticker__image"/>
+	<video *ngIf="mediaType === 'video/quicktime'" controls class="o-liveticker__image">
+  		<source src="{{mediaUrl}}">
+		Your browser does not support the video tag.
+	</video>
 	<p class="o-liveticker__preview-text"><b *ngIf="minute">{{minute}}. Spielminute:</b> {{text}}</p>
 </section>
 
@@ -25,7 +29,7 @@
 	<label for="image" class="o-liveticker__label-file">Upload Picture
 		<input type="file" id="image" class="o-liveticker__input-file" (change)="onChangeFile($event)"/>
 	</label>
-	<progress *ngIf="loading"></progress>
+	<progress max="100" *ngIf="loading">Uplaoding..</progress>
 	<label for="option" class="o-liveticker__options-lable">Send Options
 		<select name="select" id="option" [(ngModel)]="option" class="o-liveticker__options">
 			<option *ngFor="#option of options" value="{{option.key}}">{{option.title}}</option>
