@@ -3,7 +3,7 @@
 <section class="o-liveticker__preview">
 	<h3 class="o-liveticker__preview-title">Preview:</h3>
 	<img *ngIf="mediaType === 'image/jpeg' || mediaType === 'image/png'" src="{{mediaUrl}}" alt="" class="o-liveticker__image"/>
-	<video *ngIf="mediaType === 'video/quicktime'" controls class="o-liveticker__image">
+	<video *ngIf="mediaType === 'video/quicktime'" controls class="o-liveticker__video">
   		<source src="{{mediaUrl}}">
 		Your browser does not support the video tag.
 	</video>

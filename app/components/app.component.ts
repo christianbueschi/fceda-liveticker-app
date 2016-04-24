@@ -155,6 +155,7 @@ export class AppComponent {
 		this.text = "";
 		this.minute = null;
 		this.mediaUrl = "";
+		this.mediaType = "";
 		this.isTitle = false;
 	}
 
