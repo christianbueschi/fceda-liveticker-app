@@ -133,6 +133,7 @@ export class AppComponent {
 		
 		switch(this.mediaType) {
 			case "image/jpeg" :
+			case "image/png" :
 				image = this.mediaUrl;
 				break;
 			case "video/quicktime" :
